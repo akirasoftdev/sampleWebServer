@@ -15,19 +15,22 @@ import java.io.StringWriter;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.internal.util.reflection.Whitebox;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 
 public class WorkerServletTest {
+	private AmazonS3Client s3Client;
 	
 	@Before
 	public void setup() {
-		System.setProperty("RUN_MODE",  "UNIT_TEST");
+		s3Client = mock(AmazonS3Client.class);
+		Whitebox.setInternalState(S3Factory.getInstance(), "s3", s3Client);
 	}
 	
 	private AmazonS3Client getMockedS3Client() {
-		return S3Factory.getS3Client(System.getProperty("RUN_MODE"));
+		return S3Factory.getInstance().getS3Client();
 	}
 
 	@Test

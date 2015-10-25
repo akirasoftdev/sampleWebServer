@@ -31,7 +31,6 @@ public class WorkerServlet extends HttpServlet {
      * Instance Profile associated with the EC2 instance on which it is
      * run.
      */
-    private final AmazonS3Client s3 = S3Factory.getS3Client(System.getProperty("RUN_MODE"));
     
     /**
      * This method is invoked to handle POST requests from the local
@@ -44,6 +43,7 @@ public class WorkerServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
+            AmazonS3Client s3 = S3Factory.getInstance().getS3Client();
 
             // Parse the work to be done from the POST request body.
             
