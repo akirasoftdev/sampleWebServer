@@ -1,0 +1,20 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Eclipse
+.project
+.classpath
+.settings
+
+# Build
+out
+build
+bin
+
+# Other
+*.log
+*.swp
+*.bak
